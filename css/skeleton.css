@@ -102,11 +102,14 @@ body, h1, .bio, .button {
 /* Bio text styling */
 .bio {
   color: #f2c9c9;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  max-width: 340px;
-  margin: 0 auto 20px;
-  padding: 0 12px;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  max-width: 220px;
+  width: 100%;
+  margin: 0 auto 16px;
+  padding: 0;
+  text-align: center;
+  display: block;
 }
 
 /* Smaller username and button text */
