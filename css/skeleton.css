@@ -85,3 +85,35 @@ body {
 .avatar {
   box-shadow: 0 0 20px 6px rgba(255, 51, 51, 0.5);
 }
+
+/* DynaPuff font applied site-wide */
+body, h1, .bio, .button {
+  font-family: 'DynaPuff', cursive;
+}
+
+/* Separator line under username */
+.bio-divider {
+  border: none;
+  border-top: 1px solid rgba(255, 100, 100, 0.4);
+  width: 60%;
+  margin: 10px auto 14px;
+}
+
+/* Bio text styling */
+.bio {
+  color: #f2c9c9;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  max-width: 340px;
+  margin: 0 auto 20px;
+  padding: 0 12px;
+}
+
+/* Smaller username and button text */
+h1 {
+  font-size: 1.6rem;
+}
+
+.button {
+  font-size: 0.85rem;
+}
