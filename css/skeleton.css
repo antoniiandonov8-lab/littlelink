@@ -1,0 +1,15 @@
+
+/* Custom Black & Red Theme */
+body {
+  background-color: #0d0d0d !important;
+  color: #ff3333 !important;
+}
+.button {
+  background-color: #1a1a1a !important;
+  color: #ff3333 !important;
+  border: 1px solid #ff3333 !important;
+}
+.button:hover {
+  background-color: #ff3333 !important;
+  color: #000000 !important;
+}
