@@ -336,21 +336,20 @@
     <div id="leaf-container"></div>
     <script>
       const leafContainer = document.getElementById("leaf-container");
-      const leafSymbols = ["\ud83c\udf42", "\ud83c\udf41"];
       function createLeaf() {
-        const leaf = document.createElement("div");
+        const leaf = document.createElement("img");
+        leaf.src = "images/leaf.png";
         leaf.className = "leaf";
-        leaf.textContent = leafSymbols[Math.floor(Math.random() * leafSymbols.length)];
         leaf.style.left = Math.random() * 100 + "vw";
-        const fallDuration = 6 + Math.random() * 6;
-        const swayDuration = 2 + Math.random() * 2;
-        leaf.style.animationDuration = fallDuration + "s, " + swayDuration + "s";
-        leaf.style.fontSize = (14 + Math.random() * 14) + "px";
-        leaf.style.opacity = 0.5 + Math.random() * 0.5;
+        const fallDuration = 1.5 + Math.random() * 1.5;
+        leaf.style.animationDuration = fallDuration + "s";
+        const size = 16 + Math.random() * 20;
+        leaf.style.width = size + "px";
+        leaf.style.opacity = 0.6 + Math.random() * 0.4;
         leafContainer.appendChild(leaf);
         setTimeout(() => leaf.remove(), fallDuration * 1000);
       }
-      setInterval(createLeaf, 400);
+      setInterval(createLeaf, 100);
     </script>
 </body>
 

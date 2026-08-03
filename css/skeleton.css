@@ -30,7 +30,17 @@ body {
   transform: translateY(-2px);
 }
 
-/* Falling leaves container */
+
+
+
+
+/* Keep page content above the leaves */
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Falling leaves container - rain style */
 #leaf-container {
   position: fixed;
   top: 0;
@@ -44,27 +54,16 @@ body {
 
 .leaf {
   position: absolute;
-  top: -50px;
-  font-size: 20px;
-  color: #ff6b9d;
-  user-select: none;
-  animation-name: fall, sway;
-  animation-timing-function: linear, ease-in-out;
+  top: -60px;
+  width: 24px;
+  height: auto;
+  opacity: 0.85;
+  animation-name: fall;
+  animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
 
 @keyframes fall {
-  from { top: -50px; }
-  to { top: 110%; }
-}
-
-@keyframes sway {
-  0%, 100% { transform: translateX(0) rotate(0deg); }
-  50% { transform: translateX(30px) rotate(15deg); }
-}
-
-/* Keep page content above the leaves */
-.container {
-  position: relative;
-  z-index: 1;
+  from { transform: translateY(0); }
+  to { transform: translateY(115vh); }
 }
