@@ -13,3 +13,58 @@ body {
   background-color: #ff3333 !important;
   color: #000000 !important;
 }
+
+/* Red & Black theme with glow hover */
+body {
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a0000 50%, #0d0d0d 100%);
+  overflow-x: hidden;
+  position: relative;
+}
+
+.button {
+  transition: box-shadow 0.3s ease, transform 0.2s ease, background-color 0.3s ease;
+}
+
+.button:hover {
+  box-shadow: 0 0 15px 4px rgba(255, 51, 51, 0.7), 0 0 30px 8px rgba(255, 51, 51, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Falling leaves container */
+#leaf-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.leaf {
+  position: absolute;
+  top: -50px;
+  font-size: 20px;
+  color: #ff6b9d;
+  user-select: none;
+  animation-name: fall, sway;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fall {
+  from { top: -50px; }
+  to { top: 110%; }
+}
+
+@keyframes sway {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  50% { transform: translateX(30px) rotate(15deg); }
+}
+
+/* Keep page content above the leaves */
+.container {
+  position: relative;
+  z-index: 1;
+}

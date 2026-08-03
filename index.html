@@ -333,6 +333,25 @@
     </div>
   </div>
 
+    <div id="leaf-container"></div>
+    <script>
+      const leafContainer = document.getElementById("leaf-container");
+      const leafSymbols = ["\ud83c\udf42", "\ud83c\udf41"];
+      function createLeaf() {
+        const leaf = document.createElement("div");
+        leaf.className = "leaf";
+        leaf.textContent = leafSymbols[Math.floor(Math.random() * leafSymbols.length)];
+        leaf.style.left = Math.random() * 100 + "vw";
+        const fallDuration = 6 + Math.random() * 6;
+        const swayDuration = 2 + Math.random() * 2;
+        leaf.style.animationDuration = fallDuration + "s, " + swayDuration + "s";
+        leaf.style.fontSize = (14 + Math.random() * 14) + "px";
+        leaf.style.opacity = 0.5 + Math.random() * 0.5;
+        leafContainer.appendChild(leaf);
+        setTimeout(() => leaf.remove(), fallDuration * 1000);
+      }
+      setInterval(createLeaf, 400);
+    </script>
 </body>
 
 </html>
