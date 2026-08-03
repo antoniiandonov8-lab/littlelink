@@ -341,15 +341,41 @@
         leaf.src = "images/leaf.png";
         leaf.className = "leaf";
         leaf.style.left = Math.random() * 100 + "vw";
-        const fallDuration = 1.5 + Math.random() * 1.5;
+        const fallDuration = 3 + Math.random() * 2;
         leaf.style.animationDuration = fallDuration + "s";
-        const size = 16 + Math.random() * 20;
+        const size = 20 + Math.random() * 24;
         leaf.style.width = size + "px";
-        leaf.style.opacity = 0.6 + Math.random() * 0.4;
+        leaf.style.height = "auto";
+        leaf.style.opacity = 0.7 + Math.random() * 0.3;
         leafContainer.appendChild(leaf);
         setTimeout(() => leaf.remove(), fallDuration * 1000);
       }
-      setInterval(createLeaf, 100);
+      setInterval(createLeaf, 150);
+
+      document.addEventListener("click", function(e) {
+        const petalCount = 8;
+        for (let i = 0; i < petalCount; i++) {
+          const petal = document.createElement("img");
+          petal.src = "images/leaf.png";
+          petal.className = "petal";
+          const size = 14 + Math.random() * 14;
+          petal.style.width = size + "px";
+          petal.style.left = e.clientX - size / 2 + "px";
+          petal.style.top = e.clientY - size / 2 + "px";
+          const angle = Math.random() * Math.PI * 2;
+          const distance = 60 + Math.random() * 80;
+          const dx = Math.cos(angle) * distance;
+          const dy = Math.sin(angle) * distance;
+          const rot = Math.random() * 360 - 180;
+          petal.style.setProperty("--dx", dx + "px");
+          petal.style.setProperty("--dy", dy + "px");
+          petal.style.setProperty("--rot", rot + "deg");
+          const duration = 0.6 + Math.random() * 0.4;
+          petal.style.animationDuration = duration + "s";
+          document.body.appendChild(petal);
+          setTimeout(() => petal.remove(), duration * 1000);
+        }
+      });
     </script>
 </body>
 
