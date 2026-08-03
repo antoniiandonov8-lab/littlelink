@@ -15,7 +15,7 @@
 
     <!-- Page Title - Change this to your name/brand (50-60 characters recommended) -->
     <title>AnnTonii1878</title>
-    <link rel="icon" type="image/png" href="images/avatar.png"> <!-- Update this with your own favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png"> <!-- Update this with your own favicon -->
 
     <!-- Meta Description - Write a description (150-160 characters recommended) -->
     <meta name="description" content="AnnTonii1878 - find me on Pinterest.">
@@ -334,6 +334,7 @@
 
       <!-- Feel free to add your own footer information, including updating `privacy.html` to reflect how your LittleLink fork is set up -->
       <footer>
+        <p class="footer-note">made with 🖤 by AnnTonii1878</p>
       </footer>
 
     </div>
@@ -341,10 +342,13 @@
 
     <div id="leaf-container"></div>
     <script>
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const leafContainer = document.getElementById("leaf-container");
+
       function createLeaf() {
         const leaf = document.createElement("img");
         leaf.src = "images/leaf.png";
+        leaf.alt = "";
         leaf.className = "leaf";
         leaf.style.left = Math.random() * 100 + "vw";
         const fallDuration = 3 + Math.random() * 2;
@@ -356,18 +360,17 @@
         leafContainer.appendChild(leaf);
         setTimeout(() => leaf.remove(), fallDuration * 1000);
       }
-      setInterval(createLeaf, 150);
 
-      document.addEventListener("click", function(e) {
-        const petalCount = 8;
-        for (let i = 0; i < petalCount; i++) {
+      function spawnPetals(x, y, count) {
+        for (let i = 0; i < count; i++) {
           const petal = document.createElement("img");
           petal.src = "images/leaf.png";
+          petal.alt = "";
           petal.className = "petal";
           const size = 14 + Math.random() * 14;
           petal.style.width = size + "px";
-          petal.style.left = e.clientX - size / 2 + "px";
-          petal.style.top = e.clientY - size / 2 + "px";
+          petal.style.left = x - size / 2 + "px";
+          petal.style.top = y - size / 2 + "px";
           const angle = Math.random() * Math.PI * 2;
           const distance = 60 + Math.random() * 80;
           const dx = Math.cos(angle) * distance;
@@ -381,7 +384,39 @@
           document.body.appendChild(petal);
           setTimeout(() => petal.remove(), duration * 1000);
         }
-      });
+      }
+
+      if (!prefersReducedMotion) {
+        window.addEventListener("load", function() {
+          setInterval(createLeaf, 150);
+        });
+
+        document.addEventListener("click", function(e) {
+          spawnPetals(e.clientX, e.clientY, 8);
+        });
+
+        document.querySelectorAll(".button").forEach(function(btn) {
+          btn.addEventListener("mouseenter", function() {
+            const rect = btn.getBoundingClientRect();
+            spawnPetals(rect.left + rect.width / 2, rect.top + rect.height / 2, 3);
+          });
+        });
+      }
+
+      const bioEl = document.querySelector(".bio");
+      if (bioEl && !prefersReducedMotion) {
+        const fullText = bioEl.textContent;
+        bioEl.textContent = "";
+        let i = 0;
+        function typeChar() {
+          if (i < fullText.length) {
+            bioEl.textContent += fullText.charAt(i);
+            i++;
+            setTimeout(typeChar, 20);
+          }
+        }
+        window.addEventListener("load", typeChar);
+      }
     </script>
 </body>
 

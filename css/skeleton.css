@@ -121,3 +121,81 @@ h1 {
 .button {
   font-size: 0.85rem;
 }
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .leaf, .petal, .avatar, .container h1, .bio-divider, .button, .container {
+    animation: none !important;
+  }
+}
+
+/* Avatar pulsing glow */
+@keyframes avatar-pulse {
+  0%, 100% { box-shadow: 0 0 20px 6px rgba(255, 51, 51, 0.5); }
+  50% { box-shadow: 0 0 32px 10px rgba(255, 51, 51, 0.8); }
+}
+.avatar {
+  animation: avatar-pulse 3s ease-in-out infinite;
+}
+
+/* Vignette overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  box-shadow: inset 0 0 150px 60px rgba(0,0,0,0.8);
+}
+
+/* Shimmering divider */
+.bio-divider {
+  height: 1px;
+  border: none;
+  background: linear-gradient(90deg, transparent, rgba(255,80,80,0.8), transparent);
+  background-size: 200% 100%;
+  animation: divider-shimmer 3s linear infinite;
+}
+@keyframes divider-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Username ember flicker */
+.container h1 {
+  animation: ember-flicker 2.5s ease-in-out infinite;
+}
+@keyframes ember-flicker {
+  0%, 100% { text-shadow: 0 0 8px rgba(255,51,51,0.6), 0 0 16px rgba(255,51,51,0.4); }
+  50% { text-shadow: 0 0 14px rgba(255,80,80,0.9), 0 0 26px rgba(255,51,51,0.6); }
+}
+
+/* Button idle pulse (pauses on hover) */
+.button {
+  animation: button-pulse 2.8s ease-in-out infinite;
+}
+.button:hover {
+  animation: none;
+}
+@keyframes button-pulse {
+  0%, 100% { box-shadow: 0 0 6px 2px rgba(255,51,51,0.3); }
+  50% { box-shadow: 0 0 14px 4px rgba(255,51,51,0.55); }
+}
+
+/* Page fade-in on load */
+.container {
+  opacity: 0;
+  animation: page-fade-in 1.2s ease forwards;
+}
+@keyframes page-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer note */
+.footer-note {
+  font-size: 0.65rem;
+  color: rgba(255, 180, 180, 0.5);
+  text-align: center;
+}
+
